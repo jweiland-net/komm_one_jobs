@@ -10,10 +10,6 @@ call_user_func(function () {
         'Job',
         [
             \JWeiland\KommOneJobs\Controller\JobController::class => 'list',
-        ],
-        // non-cacheable actions
-        [
-            \JWeiland\KommOneJobs\Controller\JobController::class => 'list',
         ]
     );
 
