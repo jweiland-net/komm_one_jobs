@@ -1,0 +1,41 @@
+{
+	"name": "jweiland/komm-one-jobs",
+	"type": "typo3-cms-extension",
+	"description": "Use komm.ONE jobs API to show jobs",
+	"license": "GPL-2.0-or-later",
+	"keywords": [
+		"typo3",
+		"TYPO3 CMS",
+		"komm.one",
+		"jobs"
+	],
+	"homepage": "https://jweiland.net",
+	"authors": [
+		{
+			"name": "Stefan Froemken",
+			"email": "sfroemken@jweiland.net",
+			"role": "Lead Developer"
+		}
+	],
+	"support": {
+		"email": "projects@jweiland.net",
+		"issues": "https://github.com/jweiland-net/komm_one_jobs/issues",
+		"source": "https://github.com/jweiland-net/komm_one_jobs"
+	},
+	"require": {
+		"typo3/cms-core": "^11.5"
+	},
+	"autoload": {
+		"psr-4": {
+			"JWeiland\\KommOneJobs\\": "Classes"
+		}
+	},
+	"replace": {
+		"komm_one_jobs": "self.version"
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "komm_one_jobs"
+		}
+	}
+}

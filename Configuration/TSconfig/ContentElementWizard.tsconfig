@@ -1,0 +1,16 @@
+mod {
+  wizards.newContentElement.wizardItems.plugins {
+    elements {
+      job {
+        iconIdentifier = mai_jobs-plugin-job
+        title = komm.ONE Jobs
+        description = Show job record from komm.ONE XML API
+        tt_content_defValues {
+          CType = list
+          list_type = kommonejobs_job
+        }
+      }
+    }
+    show = *
+  }
+}

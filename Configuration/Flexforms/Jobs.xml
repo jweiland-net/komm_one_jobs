@@ -1,0 +1,56 @@
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>General</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <settings.type>
+                        <TCEforms>
+                            <label>Select Type</label>
+                            <config>
+                                <type>select</type>
+                                <type>selectSingle</type>
+                                <items>
+                                    <numIndex index="0">
+                                        <numIndex index="0">Professional</numIndex>
+                                        <numIndex index="1">0</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1">
+                                        <numIndex index="0">Ausbildung</numIndex>
+                                        <numIndex index="1">1</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2">
+                                        <numIndex index="0">Praktika</numIndex>
+                                        <numIndex index="1">2</numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.type>
+                    <settings.channel>
+                        <TCEforms>
+                            <label>Select Channel</label>
+                            <config>
+                                <type>select</type>
+                                <type>selectSingle</type>
+                                <items>
+                                    <numIndex index="0">
+                                        <numIndex index="0">Homepage</numIndex>
+                                        <numIndex index="1">0</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1">
+                                        <numIndex index="0">Intranet</numIndex>
+                                        <numIndex index="1">1</numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.channel>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>
