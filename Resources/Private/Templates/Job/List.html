@@ -1,106 +1,30 @@
-<html xmlns:f="https://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-	<f:layout name="Default" />
+<html lang="en"
+      xmlns:f="https://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
 
-	This Template is responsible for creating a table of domain objects.
+<f:layout name="Default"/>
 
-	If you modify this template, do not forget to change the overwrite settings
-	in /Configuration/ExtensionBuilder/settings.yaml:
-	  Resources:
-		Private:
-		  Templates:
-			List.html: keep
+<f:section name="content">
+    <f:flashMessages/>
 
-	Otherwise your changes will be overwritten the next time you save the extension in the extension builder
-
-	<f:section name="content">
-		<f:flashMessages />
-		<f:comment>
-			<f:debug title="Jobs Result">{jobs}</f:debug>
-		</f:comment> 
-		<f:if condition="{jobs}">
-			<f:then>
-				<f:for each="{jobs}" as="job">
-					<p class="button jobs-btn">
-						<a class="more" href="{job.publication_link}" target="_blank">
-							<f:comment>
-								<f:if condition="{job.lead}">
-										<f:format.htmlentitiesDecode>{job.lead}</f:format.htmlentitiesDecode>
-								</f:if>
-							</f:comment> 
-							
-							<span class="title">
-								<f:format.htmlentitiesDecode>{job.title}</f:format.htmlentitiesDecode>
-							</span>
-							<f:if condition="{job.task_area}">
-								<span>
-									Bereich: {job.task_area}
-								</span>
-							</f:if>
-							<f:if condition="{job.dvvbw_occupational_group}">
-								<span>
-									Einstufung: {job.dvvbw_occupational_group}
-								</span>
-							</f:if>
-							<f:if condition="{job.valid_to}">
-								<span>
-									Gültig bis: {job.valid_to}
-								</span>
-							</f:if>
-						</a>
-					</p>
-				</f:for>
-			</f:then>
-			<f:else>
-				<p>Zur Zeit gibt es keine offenen Stellen.</p>
-	   	</f:else>
-   	</f:if>
-		<f:comment>
-
-		<!--
-			## Alte Version: Überarbeitung 09.04.19 im Auftrag von Herrn Klohr
-			##
-			<div class="t3ddy t3ddy-accordion collapsible leave-all-items-closed" role="tablist">
-			<f:for each="{jobs}" as="job">
-				<h3 class="job-header-lead" role="tab" aria-selected="false" aria-expanded="false">
-					<f:if condition="{job.lead}">
-						<f:format.htmlentitiesDecode>{job.lead}</f:format.htmlentitiesDecode>
-					</f:if>
-					<p style="display: inline-block; width: 75%; max-width: 500px;">
-						<f:format.htmlentitiesDecode>{job.title}</f:format.htmlentitiesDecode>
-					</p>
-					<p style="float:right; width: 25%; max-width: 150px;">Gültig bis: {job.valid_to}</p>
-				</h3>
-				<div class="jobs-innerdiv">
-					<f:if condition="{job.time_model}">
-						<h3><f:format.htmlentitiesDecode>{job.time_model}</f:format.htmlentitiesDecode></h3>
-					</f:if>
-					<f:if condition="{job.time_model}">
-						<p>Gültig bis: <f:format.htmlentitiesDecode>{job.valid_to}</f:format.htmlentitiesDecode></p>
-					</f:if>
-					<f:if condition="{job.description}">
-							<h3>Beschreibung:</h3>
-							<p><f:format.htmlentitiesDecode>{job.description}</f:format.htmlentitiesDecode></p>
-					</f:if>			
-					<f:if condition="{job.requirements}">
-						<h3>Anforderungen:</h3>
-						<p><f:format.htmlentitiesDecode>{job.requirements}</f:format.htmlentitiesDecode></p>
-					</f:if>
-					<f:if condition="{job.dvvbw_payment}">
-							<h3>Besoldung:</h3>
-							<p><f:format.htmlentitiesDecode>{job.dvvbw_payment}</f:format.htmlentitiesDecode></p>
-					</f:if>	
-					<f:if condition="{job.additional_information}">
-							<h3>Zusätzliche Informationen:</h3>
-							<p><f:format.htmlentitiesDecode>{job.additional_information}</f:format.htmlentitiesDecode></p>
-					</f:if>	
-					<p class="button jobs-btn">
-						<a class="more" href="{job.application_link}" target="_blank">
-							<span>Zur Ausschreibung</span>
-						</a>
-					</p>				
-				</div>
-		</div>
-		</f:for>-->
-		</f:comment> 
-	</f:section>
+    <f:if condition="{jobs}">
+        <f:then>
+            <f:for each="{jobs}" as="job">
+                <p>
+                    <f:link.external uri="{job.publication_link}" target="_blank">
+                        <f:format.htmlentitiesDecode>{job.title}</f:format.htmlentitiesDecode>
+                        <f:if condition="{job.valid_to}">
+                            <span>
+                                Gültig bis: {job.valid_to}
+                            </span>
+                        </f:if>
+                    </f:link.external>
+                </p>
+            </f:for>
+        </f:then>
+        <f:else>
+            <p>Currently no jobs available</p>
+        </f:else>
+    </f:if>
+</f:section>
 </html>

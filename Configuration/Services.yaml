@@ -6,3 +6,14 @@ services:
 
   JWeiland\KommOneJobs\:
     resource: '../Classes/*'
+    exclude:
+      - '../Classes/Configuration/{ApiConfiguration.php,JobFilter}'
+
+  # Do not share stateful objects
+  JWeiland\KommOneJobs\Configuration\ExtConf:
+    public: true
+    shared: false
+
+  # Will be called by GU::makeInstance in TCA/FlexForm
+  JWeiland\KommOneJobs\UserFunc\AddFlexFormDataUserFunc:
+    public: true

@@ -1,0 +1,2 @@
+# cat=basic; type=boolean; label=Activate XML test file: The API endpoint does not have correct error handling and will just redirect to HTML content, if request fails. If you just want to test the output you can activate that option and a test XML file will be used.
+activateXmlTestFile = 0

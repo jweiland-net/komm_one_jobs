@@ -5,12 +5,6 @@ if (!defined('TYPO3_MODE')) {
 }
 
 call_user_func(function () {
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks'][\JWeiland\KommOneJobs\Task\Downloadxml::class] = [
-        'extension' => 'KommOneJobs',
-        'title' => 'Download Job-XML',
-        'description' => 'Herunterladen der XML-Datei aus dem Jobportal',
-    ];
-
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'JWeiland.KommOneJobs',
         'Job',
@@ -22,6 +16,16 @@ call_user_func(function () {
             \JWeiland\KommOneJobs\Controller\JobController::class => 'list',
         ]
     );
+
+    if (!isset($GLOBALS['TYPO3_CONF_VARS']['LOG']['JWeiland']['KommOneJobs']['writerConfiguration'])) {
+        $GLOBALS['TYPO3_CONF_VARS']['LOG']['JWeiland']['KommOneJobs']['writerConfiguration'] = [
+            \Psr\Log\LogLevel::INFO => [
+                \TYPO3\CMS\Core\Log\Writer\FileWriter::class => [
+                    'logFileInfix' => 'komm_one_jobs',
+                ],
+            ],
+        ];
+    }
 
     // Add komm.ONE plugin to new element wizard
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(

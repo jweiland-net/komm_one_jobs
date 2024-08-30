@@ -12,21 +12,8 @@
                             <label>Select Type</label>
                             <config>
                                 <type>select</type>
-                                <type>selectSingle</type>
-                                <items>
-                                    <numIndex index="0">
-                                        <numIndex index="0">Professional</numIndex>
-                                        <numIndex index="1">0</numIndex>
-                                    </numIndex>
-                                    <numIndex index="1">
-                                        <numIndex index="0">Ausbildung</numIndex>
-                                        <numIndex index="1">1</numIndex>
-                                    </numIndex>
-                                    <numIndex index="2">
-                                        <numIndex index="0">Praktika</numIndex>
-                                        <numIndex index="1">2</numIndex>
-                                    </numIndex>
-                                </items>
+                                <renderType>selectSingle</renderType>
+                                <itemsProcFunc>JWeiland\KommOneJobs\UserFunc\AddFlexFormDataUserFunc->setTypeItems</itemsProcFunc>
                             </config>
                         </TCEforms>
                     </settings.type>
@@ -35,22 +22,53 @@
                             <label>Select Channel</label>
                             <config>
                                 <type>select</type>
-                                <type>selectSingle</type>
-                                <items>
-                                    <numIndex index="0">
-                                        <numIndex index="0">Homepage</numIndex>
-                                        <numIndex index="1">0</numIndex>
-                                    </numIndex>
-                                    <numIndex index="1">
-                                        <numIndex index="0">Intranet</numIndex>
-                                        <numIndex index="1">1</numIndex>
-                                    </numIndex>
-                                </items>
+                                <renderType>selectSingle</renderType>
+                                <itemsProcFunc>JWeiland\KommOneJobs\UserFunc\AddFlexFormDataUserFunc->setChannelItems</itemsProcFunc>
                             </config>
                         </TCEforms>
                     </settings.channel>
                 </el>
             </ROOT>
         </sDEF>
+        <api>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>API</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <settings.endpoint>
+                        <TCEforms>
+                            <label>Endpoint</label>
+                            <description>Host with path and filename: example.dvvbw.de/interfaces/jobs.xml</description>
+                            <config>
+                                <type>input</type>
+                                <eval>trim,required</eval>
+                            </config>
+                        </TCEforms>
+                    </settings.endpoint>
+                    <settings.username>
+                        <TCEforms>
+                            <label>Username</label>
+                            <description>Enter the username to get access to the API endpoint above</description>
+                            <config>
+                                <type>input</type>
+                                <eval>trim,required</eval>
+                            </config>
+                        </TCEforms>
+                    </settings.username>
+                    <settings.password>
+                        <TCEforms>
+                            <label>Password</label>
+                            <description>Enter the password to get access to the API endpoint above</description>
+                            <config>
+                                <type>input</type>
+                                <eval>trim,required,password</eval>
+                            </config>
+                        </TCEforms>
+                    </settings.password>
+                </el>
+            </ROOT>
+        </api>
     </sheets>
 </T3DataStructure>
