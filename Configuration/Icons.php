@@ -10,8 +10,8 @@ declare(strict_types=1);
  */
 
 return [
-    'mai_jobs-plugin-job' => [
+    'komm-one-jobs-plugin' => [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-        'source' => 'EXT:komm_one_jobs/Resources/Public/Icons/user_plugin_job.svg',
+        'source' => 'EXT:komm_one_jobs/Resources/Public/Icons/Job-Plugin.svg',
     ],
 ];

@@ -2,7 +2,7 @@ mod {
   wizards.newContentElement.wizardItems.plugins {
     elements {
       job {
-        iconIdentifier = mai_jobs-plugin-job
+        iconIdentifier = komm-one-jobs-plugin
         title = komm.ONE Jobs
         description = Show job record from komm.ONE XML API
         tt_content_defValues {
