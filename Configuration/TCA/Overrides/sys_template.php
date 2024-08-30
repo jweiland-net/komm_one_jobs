@@ -5,7 +5,7 @@ if (!defined('TYPO3_MODE')) {
 }
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
-    'mai_jobs',
+    'komm_one_jobs',
     'Configuration/TypoScript',
-    'mai_jobs'
+    'Komm.ONE Jobs'
 );
