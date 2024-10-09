@@ -62,6 +62,39 @@ class JobController extends ActionController
         return $this->htmlResponse($this->view->render());
     }
 
+    public function searchAction(string $search = ''): ResponseInterface
+    {
+        $contentElementUid = $this->getContentElementUid();
+        if ($contentElementUid === 0) {
+            return new HtmlResponse('<strong>Content Element UID could not be detected</strong>');
+        }
+
+        try {
+            $apiConfiguration = $this->getApiConfiguration();
+        } catch (InvalidApiConfigurationException $exception) {
+            return new HtmlResponse('<strong>' . $exception->getMessage() . '</strong>');
+        }
+
+        if (!$this->jobService->updateStoredJobs($contentElementUid, $apiConfiguration)) {
+            return new HtmlResponse(
+                '<strong>Error while retrieving job data. Please check TYPO3 log file</strong>'
+            );
+        }
+
+        $filter = new JobFilter(
+            (string)($this->settings['channel'] ?? 'all'),
+            (string)($this->settings['type'] ?? 'all'),
+            $search ?? ''
+        );
+
+        $this->view->assignMultiple([
+            'jobs' => $this->jobService->getStoredJobs($contentElementUid, $filter),
+            'search' => $filter->getSearch(),
+        ]);
+
+        return $this->htmlResponse($this->view->render());
+    }
+
     protected function getContentElementUid(): int
     {
         return (int)$this->configurationManager->getContentObject()->data['uid'] ?? 0;

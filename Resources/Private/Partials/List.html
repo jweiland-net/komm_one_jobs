@@ -1,0 +1,22 @@
+<html lang="en"
+      xmlns:f="https://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:if condition="{jobs}">
+    <f:then>
+        <f:for each="{jobs}" as="job">
+            <p>
+                <f:link.external uri="{job.publication_link}" target="_blank">
+                    <f:format.htmlentitiesDecode>{job.title}</f:format.htmlentitiesDecode>
+                    <f:if condition="{job.valid_to}">
+                        <span>Gültig bis: {job.valid_to}</span>
+                    </f:if>
+                </f:link.external>
+            </p>
+        </f:for>
+    </f:then>
+    <f:else>
+        <p>Currently no jobs available</p>
+    </f:else>
+</f:if>
+</html>

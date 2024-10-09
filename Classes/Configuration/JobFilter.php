@@ -31,7 +31,9 @@ class JobFilter
 
     private string $channel = 'all';
 
-    public function __construct(string $channel, string $type)
+    private string $search = '';
+
+    public function __construct(string $channel, string $type, string $search = '')
     {
         if (in_array($type, array_keys(self::TYPES), true)) {
             $this->type = $type;
@@ -40,6 +42,8 @@ class JobFilter
         if (in_array($channel, array_keys(self::CHANNELS), true)) {
             $this->channel = $channel;
         }
+
+        $this->search = htmlspecialchars($search);
     }
 
     public function getFilters(): array
@@ -48,5 +52,10 @@ class JobFilter
             'vacancy_type' => $this->type,
             'publication_channel' => $this->channel,
         ];
+    }
+
+    public function getSearch(): string
+    {
+        return $this->search;
     }
 }

@@ -9,7 +9,10 @@ call_user_func(function () {
         'JWeiland.KommOneJobs',
         'Job',
         [
-            \JWeiland\KommOneJobs\Controller\JobController::class => 'list',
+            \JWeiland\KommOneJobs\Controller\JobController::class => 'list, search',
+        ],
+        [
+            \JWeiland\KommOneJobs\Controller\JobController::class => 'search',
         ]
     );
 

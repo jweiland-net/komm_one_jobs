@@ -79,13 +79,46 @@ class JobService
         }
 
         $sortedJobs = $this->sortJobs(
-            $this->xmlJobParser->parse($xmlContent, $filter)
+            $this->searchJobs(
+                $this->xmlJobParser->parse($xmlContent, $filter),
+                $filter->getSearch()
+            )
         );
 
         return $sortedJobs;
     }
 
-    private function sortJobs(array $jobs, $column = 'title'): array
+    private function searchJobs(array $jobs, string $search = ''): array
+    {
+        // Early return, if no search
+        $search = trim($search);
+        if ($search === '') {
+            return $jobs;
+        }
+
+        return array_filter($jobs, static function ($job) use ($search): bool {
+            if (!isset($job['title'], $job['description'])) {
+                return false;
+            }
+
+            // <title/> will be converted to empty array
+            if ($job['title'] === []) {
+                $job['title'] = '';
+            }
+
+            // <description/> will be converted to empty array
+            if ($job['description'] === []) {
+                $job['description'] = '';
+            }
+
+            return (
+                mb_stripos($job['title'], $search) !== false
+                || mb_stripos($job['description'], $search) !== false
+            );
+        });
+    }
+
+    private function sortJobs(array $jobs, string $column = 'title'): array
     {
         $sortValues = array_column($jobs, $column);
         array_multisort($sortValues, SORT_ASC, SORT_STRING, $jobs);

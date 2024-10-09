@@ -17,7 +17,7 @@ class XmlJobParser
     {
         $jobs = $this->xmlContent2Array($xmlContent);
 
-        return array_filter($jobs, function ($job) use ($filter) {
+        return array_filter($jobs, static function ($job) use ($filter): bool {
             foreach ($filter->getFilters() as $key => $value) {
                 if ($value === 'all') {
                     return true;
