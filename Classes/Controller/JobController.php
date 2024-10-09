@@ -53,8 +53,9 @@ class JobController extends ActionController
             $this->jobService->getStoredJobs(
                 $contentElementUid,
                 new JobFilter(
-                    (int)($this->settings['channel'] ?? 0),
-                    (string)($this->settings['type'] ?? ''))
+                    (string)($this->settings['channel'] ?? 'all'),
+                    (string)($this->settings['type'] ?? 'all')
+                )
             )
         );
 

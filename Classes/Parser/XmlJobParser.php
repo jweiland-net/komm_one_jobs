@@ -19,6 +19,9 @@ class XmlJobParser
 
         return array_filter($jobs, function ($job) use ($filter) {
             foreach ($filter->getFilters() as $key => $value) {
+                if ($value === 'all') {
+                    return true;
+                }
                 if ($job[$key] !== $value) {
                     return false;
                 }

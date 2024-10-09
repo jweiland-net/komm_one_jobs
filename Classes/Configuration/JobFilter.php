@@ -9,38 +9,42 @@
 
 namespace JWeiland\KommOneJobs\Configuration;
 
-use TYPO3\CMS\Core\Utility\MathUtility;
-
 class JobFilter
 {
     public const TYPES = [
+        'all' => 'Show all',
         'dvvbw_professional' => 'Professional',
         'dvvbw_apprentice' => 'Apprentice',
         'dvvbw_holiday_job' => 'Holiday Job'
     ];
 
     public const CHANNELS = [
-        0 => 'Homepage',
-        1 => 'Intranet',
+        'all' => 'Show all',
+        'homepage' => 'Homepage',
+        'intranet' => 'Intranet',
+        'multiposting' => 'Multiposting',
     ];
 
-    private string $type = 'dvvbw_professional';
+    private string $type = 'all';
 
-    private int $channel;
+    private string $channel = 'all';
 
-    public function __construct(int $channel, string $type)
+    public function __construct(string $channel, string $type)
     {
         if (in_array($type, array_keys(self::TYPES), true)) {
             $this->type = $type;
         }
-        $this->channel = MathUtility::forceIntegerInRange($channel, 0, 1);
+
+        if (in_array($channel, array_keys(self::CHANNELS), true)) {
+            $this->channel = $channel;
+        }
     }
 
     public function getFilters(): array
     {
         return [
             'vacancy_type' => $this->type,
-            'publication_channel' => self::CHANNELS[$this->channel],
+            'publication_channel' => $this->channel,
         ];
     }
 }
