@@ -15,7 +15,9 @@ class JobFilter
         'all' => 'Show all',
         'dvvbw_professional' => 'Professional',
         'dvvbw_apprentice' => 'Apprentice',
-        'dvvbw_holiday_job' => 'Holiday Job'
+        'dvvbw_holiday_job' => 'Holiday Job',
+        'dvvbw_top_position' => 'Manager',
+        'dvvbw_unsolicited' => 'Unsolicited',
     ];
 
     public const CHANNELS = [
