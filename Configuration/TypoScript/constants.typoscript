@@ -1,4 +1,3 @@
-
 plugin.tx_kommonejobs_job {
     view {
         # cat=plugin.tx_kommonejobs_job/file; type=string; label=Path to template root (FE)
