@@ -48,21 +48,22 @@ class JobController extends ActionController
             );
         }
 
-        $this->view->assign(
-            'jobs',
-            $this->jobService->getStoredJobs(
-                $contentElementUid,
-                new JobFilter(
-                    (string)($this->settings['channel'] ?? 'all'),
-                    (string)($this->settings['type'] ?? 'all')
-                )
-            )
+        $filter = new JobFilter(
+            (string)($this->settings['channel'] ?? 'all'),
+            (string)($this->settings['type'] ?? 'all')
         );
+
+        $jobs = $this->jobService->getStoredJobs($contentElementUid, $filter);
+
+        $this->view->assignMultiple([
+            'jobs' => $jobs,
+            'timeModelFilter' => $this->getTimeModelFilter($jobs),
+        ]);
 
         return $this->htmlResponse($this->view->render());
     }
 
-    public function searchAction(string $search = ''): ResponseInterface
+    public function searchAction(string $search = '', string $timeModel = ''): ResponseInterface
     {
         $contentElementUid = $this->getContentElementUid();
         if ($contentElementUid === 0) {
@@ -84,15 +85,33 @@ class JobController extends ActionController
         $filter = new JobFilter(
             (string)($this->settings['channel'] ?? 'all'),
             (string)($this->settings['type'] ?? 'all'),
-            $search ?? ''
+            $search ?? '',
+            $timeModel ?? ''
         );
 
+        $jobs = $this->jobService->getStoredJobs($contentElementUid, $filter);
+
         $this->view->assignMultiple([
-            'jobs' => $this->jobService->getStoredJobs($contentElementUid, $filter),
+            'jobs' => $jobs,
             'search' => $filter->getSearch(),
+            'selectedTimeModel' => $filter->getTimeModel(),
+            'timeModelFilter' => $this->getTimeModelFilter($jobs),
         ]);
 
         return $this->htmlResponse($this->view->render());
+    }
+
+    protected function getTimeModelFilter(array $jobs): array
+    {
+        // array_filter will remove the empty <time_model/> (array(0)) entries
+        $timeModels = array_unique(array_filter(array_column($jobs, 'time_model')));
+
+        sort($timeModels);
+
+        $timeModels = array_combine($timeModels, $timeModels);
+        array_unshift($timeModels, '');
+
+        return $timeModels;
     }
 
     protected function getContentElementUid(): int

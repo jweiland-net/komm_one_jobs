@@ -33,7 +33,9 @@ class JobFilter
 
     private string $search = '';
 
-    public function __construct(string $channel, string $type, string $search = '')
+    private string $timeModel = '';
+
+    public function __construct(string $channel, string $type, string $search = '', string $timeModel = '')
     {
         if (in_array($type, array_keys(self::TYPES), true)) {
             $this->type = $type;
@@ -43,7 +45,8 @@ class JobFilter
             $this->channel = $channel;
         }
 
-        $this->search = htmlspecialchars($search);
+        $this->search = htmlspecialchars(trim($search));
+        $this->timeModel = htmlspecialchars(trim($timeModel));
     }
 
     public function getFilters(): array
@@ -57,5 +60,10 @@ class JobFilter
     public function getSearch(): string
     {
         return $this->search;
+    }
+
+    public function getTimeModel(): string
+    {
+        return $this->timeModel;
     }
 }

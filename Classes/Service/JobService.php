@@ -78,14 +78,37 @@ class JobService
             return [];
         }
 
-        $sortedJobs = $this->sortJobs(
+        return $this->sortJobs(
             $this->searchJobs(
-                $this->xmlJobParser->parse($xmlContent, $filter),
+                $this->filterJobs(
+                    $this->xmlJobParser->parse($xmlContent, $filter),
+                    $filter
+                ),
                 $filter->getSearch()
             )
         );
+    }
 
-        return $sortedJobs;
+    private function filterJobs(array $jobs, JobFilter $filter): array
+    {
+        // Early return, if time model is not selected
+        $timeModel = $filter->getTimeModel();
+        if ($timeModel === '') {
+            return $jobs;
+        }
+
+        return array_filter($jobs, static function ($job) use ($timeModel): bool {
+            if (!isset($job['time_model'])) {
+                return false;
+            }
+
+            // <time_model/> will be converted to empty array
+            if ($job['time_model'] === []) {
+                return false;
+            }
+
+            return $job['time_model'] === $timeModel;
+        });
     }
 
     private function searchJobs(array $jobs, string $search = ''): array
