@@ -78,7 +78,19 @@ class JobService
             return [];
         }
 
-        return $this->xmlJobParser->parse($xmlContent, $filter);
+        $sortedJobs = $this->sortJobs(
+            $this->xmlJobParser->parse($xmlContent, $filter)
+        );
+
+        return $sortedJobs;
+    }
+
+    private function sortJobs(array $jobs, $column = 'title'): array
+    {
+        $sortValues = array_column($jobs, $column);
+        array_multisort($sortValues, SORT_ASC, SORT_STRING, $jobs);
+
+        return $jobs;
     }
 
     private function getTempFilePath(int $contentElementUid): string
