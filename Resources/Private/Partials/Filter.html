@@ -9,6 +9,7 @@
             <select id="typeFilter"
                     class="form-control"
                     type="text"
+                    onChange="this.form.submit();"
                     name="tx_kommonejobs_job[timeModel]">
                 <f:for each="{timeModelFilter}" as="timeModel">
                     <f:if condition="{timeModel} == {selectedTimeModel}">
