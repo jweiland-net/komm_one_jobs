@@ -16,6 +16,7 @@ use JWeiland\KommOneJobs\Service\JobService;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\HtmlResponse;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
  * JobController
@@ -114,7 +115,10 @@ class JobController extends ActionController
         sort($timeModels);
 
         $timeModels = array_combine($timeModels, $timeModels);
-        array_unshift($timeModels, '');
+        array_unshift(
+            $timeModels,
+            LocalizationUtility::translate('filter.employmentType.all', 'KommOneJobs')
+        );
 
         return $timeModels;
     }

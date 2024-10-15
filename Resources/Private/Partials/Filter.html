@@ -4,7 +4,7 @@
 
 <form id="kommonejobsSearchForm" class="form-horizontal" method="post" name="search" action="{f:uri.action(action: 'search', controller: 'Job', section: 'c{data.uid}')}">
     <div class="form-group">
-        <label for="typeFilter" class="col-sm-3">Type</label>
+        <label for="typeFilter" class="col-sm-3">{f:translate(key: 'label.employmentType')}</label>
         <div class="col-sm-9">
             <select id="typeFilter"
                     class="form-control"
@@ -24,7 +24,7 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="searchJob" class="col-sm-3">Search</label>
+        <label for="searchJob" class="col-sm-3">{f:translate(key: 'button.search')}</label>
         <div class="col-sm-9">
             <input id="searchJob"
                    class="form-control"
