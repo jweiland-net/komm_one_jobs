@@ -11,13 +11,19 @@
                     type="text"
                     onChange="this.form.submit();"
                     name="tx_kommonejobs_job[timeModel]">
-                <f:for each="{timeModelFilter}" as="timeModel">
+                <f:for each="{timeModelFilter}" as="timeModel" iteration="iterator">
+                    <f:variable name="label">
+                        <f:if condition="{timeModel}=='all'">
+                            <f:then>{f:translate(key: 'filter.employmentType.all')}</f:then>
+                            <f:else>{timeModel}</f:else>
+                        </f:if>
+                    </f:variable>
                     <f:if condition="{timeModel} == {selectedTimeModel}">
                         <f:then>
-                            <option name="{timeModel}" selected="selected">{timeModel}</option>
+                            <option value="{timeModel}" selected="selected">{label}</option>
                         </f:then>
                         <f:else>
-                            <option name="{timeModel}">{timeModel}</option>
+                            <option value="{timeModel}">{label}</option>
                         </f:else>
                     </f:if>
                 </f:for>

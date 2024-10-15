@@ -87,7 +87,7 @@ class JobService
     {
         // Early return, if time model is not selected
         $timeModel = $filter->getTimeModel();
-        if ($timeModel === '') {
+        if (in_array($timeModel, ['', 'all'], true)) {
             return $jobs;
         }
 
