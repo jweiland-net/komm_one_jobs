@@ -1,14 +1,10 @@
-plugin.tx_kommonejobs_job {
-    view {
-        # cat=plugin.tx_kommonejobs_job/file; type=string; label=Path to template root (FE)
-        templateRootPath = EXT:komm_one_jobs/Resources/Private/Templates/
-        # cat=plugin.tx_kommonejobs_job/file; type=string; label=Path to template partials (FE)
-        partialRootPath = EXT:komm_one_jobs/Resources/Private/Partials/
-        # cat=plugin.tx_kommonejobs_job/file; type=string; label=Path to template layouts (FE)
-        layoutRootPath = EXT:komm_one_jobs/Resources/Private/Layouts/
-    }
-    persistence {
-        # cat=plugin.tx_kommonejobs_job//a; type=string; label=Default storage PID
-        storagePid =
-    }
+plugin.tx_kommonejobs {
+  view {
+    # cat=plugin.tx_kommonejobs/file; type=string; label=Path to template root (FE)
+    templateRootPath = EXT:komm_one_jobs/Resources/Private/Templates/
+    # cat=plugin.tx_kommonejobs/file; type=string; label=Path to template partials (FE)
+    partialRootPath = EXT:komm_one_jobs/Resources/Private/Partials/
+    # cat=plugin.tx_kommonejobs/file; type=string; label=Path to template layouts (FE)
+    layoutRootPath = EXT:komm_one_jobs/Resources/Private/Layouts/
+  }
 }

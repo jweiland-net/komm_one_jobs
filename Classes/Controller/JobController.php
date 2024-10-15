@@ -58,6 +58,7 @@ class JobController extends ActionController
         $this->view->assignMultiple([
             'jobs' => $jobs,
             'timeModelFilter' => $this->getTimeModelFilter($jobs),
+            'data' => $this->configurationManager->getContentObject()->data ?? [],
         ]);
 
         return $this->htmlResponse($this->view->render());
@@ -92,10 +93,14 @@ class JobController extends ActionController
         $jobs = $this->jobService->getStoredJobs($contentElementUid, $filter);
 
         $this->view->assignMultiple([
-            'jobs' => $jobs,
+            'jobs' => $this->jobService->searchJobs(
+                $this->jobService->filterJobs($jobs, $filter),
+                $search
+            ),
             'search' => $filter->getSearch(),
             'selectedTimeModel' => $filter->getTimeModel(),
             'timeModelFilter' => $this->getTimeModelFilter($jobs),
+            'data' => $this->configurationManager->getContentObject()->data ?? [],
         ]);
 
         return $this->htmlResponse($this->view->render());

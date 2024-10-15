@@ -79,17 +79,11 @@ class JobService
         }
 
         return $this->sortJobs(
-            $this->searchJobs(
-                $this->filterJobs(
-                    $this->xmlJobParser->parse($xmlContent, $filter),
-                    $filter
-                ),
-                $filter->getSearch()
-            )
+            $this->xmlJobParser->parse($xmlContent, $filter)
         );
     }
 
-    private function filterJobs(array $jobs, JobFilter $filter): array
+    public function filterJobs(array $jobs, JobFilter $filter): array
     {
         // Early return, if time model is not selected
         $timeModel = $filter->getTimeModel();
@@ -111,7 +105,7 @@ class JobService
         });
     }
 
-    private function searchJobs(array $jobs, string $search = ''): array
+    public function searchJobs(array $jobs, string $search = ''): array
     {
         // Early return, if no search
         $search = trim($search);

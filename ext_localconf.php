@@ -6,7 +6,7 @@ if (!defined('TYPO3_MODE')) {
 
 call_user_func(function () {
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'JWeiland.KommOneJobs',
+        'KommOneJobs',
         'Job',
         [
             \JWeiland\KommOneJobs\Controller\JobController::class => 'list, search',

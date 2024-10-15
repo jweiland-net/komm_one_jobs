@@ -11,3 +11,9 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['kommonejobs_
     'kommonejobs_job',
     'FILE:EXT:komm_one_jobs/Configuration/Flexforms/Jobs.xml'
 );
+
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+    'KommOneJobs',
+    'Job',
+    'Komm.ONE Jobs'
+);
