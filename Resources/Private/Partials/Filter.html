@@ -2,9 +2,7 @@
       xmlns:f="https://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
-<form id="kommonejobsSearchForm" class="form-horizontal" method="post" name="search" action="{f:uri.page(section: data.uid)}">
-    <input type="hidden" name="tx_kommonejobs_job[controller]" value="Job"/>
-    <input type="hidden" name="tx_kommonejobs_job[action]" value="search"/>
+<form id="kommonejobsSearchForm" class="form-horizontal" method="post" name="search" action="{f:uri.action(action: 'search', controller: 'Job', section: 'c{data.uid}')}">
     <div class="form-group">
         <label for="typeFilter" class="col-sm-3">Type</label>
         <div class="col-sm-9">
