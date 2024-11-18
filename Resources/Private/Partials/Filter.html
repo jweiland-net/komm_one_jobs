@@ -31,6 +31,33 @@
         </div>
     </div>
     <div class="form-group">
+        <label for="occupationalGroupFilter" class="col-sm-3">{f:translate(key: 'label.occupationalGroup')}</label>
+        <div class="col-sm-9">
+            <select id="occupationalGroupFilter"
+                    class="form-control"
+                    type="text"
+                    onChange="this.form.submit();"
+                    name="tx_kommonejobs_job[occupationalGroup]">
+                <f:for each="{occupationalGroupFilter}" as="occupationalGroup" iteration="iterator">
+                    <f:variable name="label">
+                        <f:if condition="{occupationalGroup}=='all'">
+                            <f:then>{f:translate(key: 'filter.occupationalGroup.all')}</f:then>
+                            <f:else>{occupationalGroup}</f:else>
+                        </f:if>
+                    </f:variable>
+                    <f:if condition="{occupationalGroup} == {selectedOccupationalGroup}">
+                        <f:then>
+                            <option value="{occupationalGroup}" selected="selected">{label}</option>
+                        </f:then>
+                        <f:else>
+                            <option value="{occupationalGroup}">{label}</option>
+                        </f:else>
+                    </f:if>
+                </f:for>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
         <label for="searchJob" class="col-sm-3">{f:translate(key: 'button.search')}</label>
         <div class="col-sm-9">
             <input id="searchJob"

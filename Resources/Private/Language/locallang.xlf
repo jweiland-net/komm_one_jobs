@@ -9,6 +9,12 @@
 			<trans-unit id="filter.employmentType.all">
 				<source>All types of employment</source>
 			</trans-unit>
+			<trans-unit id="label.occupationalGroup">
+				<source>Occupational fields</source>
+			</trans-unit>
+			<trans-unit id="filter.occupationalGroup.all">
+				<source>All types of occupational fields</source>
+			</trans-unit>
 			<trans-unit id="button.search">
 				<source>Search</source>
 			</trans-unit>

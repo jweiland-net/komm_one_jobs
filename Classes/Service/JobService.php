@@ -85,23 +85,17 @@ class JobService
 
     public function filterJobs(array $jobs, JobFilter $filter): array
     {
-        // Early return, if time model is not selected
         $timeModel = $filter->getTimeModel();
-        if (in_array($timeModel, ['', 'all'], true)) {
-            return $jobs;
-        }
+        $occupationalGroup = $filter->getOccupationalGroup();
 
-        return array_filter($jobs, static function ($job) use ($timeModel): bool {
-            if (!isset($job['time_model'])) {
-                return false;
+        return array_filter($jobs, static function ($job) use ($timeModel, $occupationalGroup): bool {
+            if ($timeModel === 'all' || $occupationalGroup === 'all') {
+                return true;
             }
 
-            // <time_model/> will be converted to empty array
-            if ($job['time_model'] === []) {
-                return false;
-            }
-
-            return $job['time_model'] === $timeModel;
+            return
+                (isset($job['time_model']) && $job['time_model'] !== [] && $job['time_model'] === $timeModel)
+                || (isset($job['occupational_group']) && $job['occupational_group'] !== [] && $job['occupational_group'] === $occupationalGroup);
         });
     }
 

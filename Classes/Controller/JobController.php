@@ -58,14 +58,18 @@ class JobController extends ActionController
         $this->view->assignMultiple([
             'jobs' => $jobs,
             'timeModelFilter' => $this->getTimeModelFilter($jobs),
+            'occupationalGroupFilter' => $this->getOccupationalGroupFilter($jobs),
             'data' => $this->configurationManager->getContentObject()->data ?? [],
         ]);
 
         return $this->htmlResponse($this->view->render());
     }
 
-    public function searchAction(string $search = '', string $timeModel = ''): ResponseInterface
-    {
+    public function searchAction(
+        string $search = '',
+        string $timeModel = '',
+        string $occupationalGroup = ''
+    ): ResponseInterface {
         $contentElementUid = $this->getContentElementUid();
         if ($contentElementUid === 0) {
             return new HtmlResponse('<strong>Content Element UID could not be detected</strong>');
@@ -87,7 +91,8 @@ class JobController extends ActionController
             (string)($this->settings['channel'] ?? 'all'),
             (string)($this->settings['type'] ?? 'all'),
             $search ?? '',
-            $timeModel ?? ''
+            $timeModel ?? '',
+            $occupationalGroup ?? ''
         );
 
         $jobs = $this->jobService->getStoredJobs($contentElementUid, $filter);
@@ -100,6 +105,8 @@ class JobController extends ActionController
             'search' => $filter->getSearch(),
             'selectedTimeModel' => $filter->getTimeModel(),
             'timeModelFilter' => $this->getTimeModelFilter($jobs),
+            'selectedOccupationalGroup' => $filter->getOccupationalGroup(),
+            'occupationalGroupFilter' => $this->getOccupationalGroupFilter($jobs),
             'data' => $this->configurationManager->getContentObject()->data ?? [],
         ]);
 
@@ -117,6 +124,19 @@ class JobController extends ActionController
         array_unshift($timeModels, 'all');
 
         return $timeModels;
+    }
+
+    protected function getOccupationalGroupFilter(array $jobs): array
+    {
+        // array_filter will remove the empty <dvvbw_occupational_group/> (array(0)) entries
+        $occupationalGroups = array_unique(array_filter(array_column($jobs, 'dvvbw_occupational_group')));
+
+        sort($occupationalGroups);
+
+        $occupationalGroups = array_combine($occupationalGroups, $occupationalGroups);
+        array_unshift($occupationalGroups, 'all');
+
+        return $occupationalGroups;
     }
 
     protected function getContentElementUid(): int
