@@ -89,13 +89,23 @@ class JobService
         $occupationalGroup = $filter->getOccupationalGroup();
 
         return array_filter($jobs, static function ($job) use ($timeModel, $occupationalGroup): bool {
-            if ($timeModel === 'all' || $occupationalGroup === 'all') {
-                return true;
+            if ($timeModel === 'all') {
+                $isValidTimeModel = true;
+            } else {
+                $isValidTimeModel = isset($job['time_model'])
+                    && $job['time_model'] !== []
+                    && $job['time_model'] === $timeModel;
             }
 
-            return
-                (isset($job['time_model']) && $job['time_model'] !== [] && $job['time_model'] === $timeModel)
-                || (isset($job['occupational_group']) && $job['occupational_group'] !== [] && $job['occupational_group'] === $occupationalGroup);
+            if ($occupationalGroup === 'all') {
+                $isValidOccupationalGroup = true;
+            } else {
+                $isValidOccupationalGroup = isset($job['dvvbw_occupational_group'])
+                    && $job['dvvbw_occupational_group'] !== []
+                    && $job['dvvbw_occupational_group'] === $occupationalGroup;
+            }
+
+            return $isValidTimeModel && $isValidOccupationalGroup;
         });
     }
 
