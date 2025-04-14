@@ -2,7 +2,6 @@
 
 [![Packagist][packagist-logo-stable]][extension-packagist-url]
 [![Latest Stable Version][extension-build-shield]][extension-ter-url]
-[![License][LICENSE_BADGE]][extension-packagist-url]
 [![Total Downloads][extension-downloads-badge]][extension-packagist-url]
 [![Monthly Downloads][extension-monthly-downloads]][extension-packagist-url]
 [![TYPO3 11.5][TYPO3-shield]][TYPO3-11-url]
@@ -38,5 +37,3 @@ composer req jweiland/komm-one-jobs
 [TYPO3-11-url]: https://get.typo3.org/version/11
 
 [TYPO3-shield]: https://img.shields.io/badge/TYPO3-11.5-green.svg?style=for-the-badge&logo=typo3
-
-[LICENSE_BADGE]: https://img.shields.io/github/license/jweiland-net/komm_one_jobs?label=license&style=for-the-badge
