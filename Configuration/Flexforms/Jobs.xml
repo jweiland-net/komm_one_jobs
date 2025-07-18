@@ -2,70 +2,56 @@
     <sheets>
         <sDEF>
             <ROOT>
-                <TCEforms>
-                    <sheetTitle>General</sheetTitle>
-                </TCEforms>
+                <sheetTitle>General</sheetTitle>
                 <type>array</type>
                 <el>
                     <settings.type>
-                        <TCEforms>
-                            <label>Select Type</label>
-                            <config>
-                                <type>select</type>
-                                <renderType>selectSingle</renderType>
-                                <itemsProcFunc>JWeiland\KommOneJobs\UserFunc\AddFlexFormDataUserFunc->setTypeItems</itemsProcFunc>
-                            </config>
-                        </TCEforms>
+                        <label>Select Type</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <itemsProcFunc>JWeiland\KommOneJobs\UserFunc\AddFlexFormDataUserFunc->setTypeItems</itemsProcFunc>
+                        </config>
                     </settings.type>
                     <settings.channel>
-                        <TCEforms>
-                            <label>Select Channel</label>
-                            <config>
-                                <type>select</type>
-                                <renderType>selectSingle</renderType>
-                                <itemsProcFunc>JWeiland\KommOneJobs\UserFunc\AddFlexFormDataUserFunc->setChannelItems</itemsProcFunc>
-                            </config>
-                        </TCEforms>
+                        <label>Select Channel</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <itemsProcFunc>JWeiland\KommOneJobs\UserFunc\AddFlexFormDataUserFunc->setChannelItems</itemsProcFunc>
+                        </config>
                     </settings.channel>
                 </el>
             </ROOT>
         </sDEF>
         <api>
             <ROOT>
-                <TCEforms>
-                    <sheetTitle>API</sheetTitle>
-                </TCEforms>
+                <sheetTitle>API</sheetTitle>
                 <type>array</type>
                 <el>
                     <settings.endpoint>
-                        <TCEforms>
-                            <label>Endpoint</label>
-                            <description>Host with path and filename: example.dvvbw.de/interfaces/jobs.xml</description>
-                            <config>
-                                <type>input</type>
-                                <eval>trim,required</eval>
-                            </config>
-                        </TCEforms>
+                        <label>Endpoint</label>
+                        <description>Host with path and filename: example.dvvbw.de/interfaces/jobs.xml</description>
+                        <config>
+                            <type>input</type>
+                            <eval>trim,required</eval>
+                        </config>
                     </settings.endpoint>
                     <settings.username>
-                        <TCEforms>
-                            <label>Username</label>
-                            <description>Enter the username to get access to the API endpoint above</description>
-                            <config>
-                                <type>input</type>
-                                <eval>trim,required</eval>
-                            </config>
-                        </TCEforms>
+                        <label>Username</label>
+                        <description>Enter the username to get access to the API endpoint above</description>
+                        <config>
+                            <type>input</type>
+                            <eval>trim,required</eval>
+                        </config>
                     </settings.username>
                     <settings.password>
-                        <TCEforms>
-                            <label>Password</label>
-                            <description>Enter the password to get access to the API endpoint above</description>
-                            <config>
-                                <type>input</type>
-                                <eval>trim,required,password</eval>
-                            </config>
-                        </TCEforms>
+                        <label>Password</label>
+                        <description>Enter the password to get access to the API endpoint above</description>
+                        <config>
+                            <type>input</type>
+                            <eval>trim,required,password</eval>
+                        </config>
                     </settings.password>
                 </el>
             </ROOT>
