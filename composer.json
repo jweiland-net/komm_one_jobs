@@ -1,7 +1,7 @@
 {
 	"name": "jweiland/komm-one-jobs",
 	"type": "typo3-cms-extension",
-	"description": "Use komm.ONE jobs API to show jobs",
+	"description": "Use the komm.ONE jobs API to display jobs",
 	"license": "GPL-2.0-or-later",
 	"keywords": [
 		"typo3",
@@ -23,6 +23,7 @@
 		"source": "https://github.com/jweiland-net/komm_one_jobs"
 	},
 	"require": {
+		"ext-simplexml": "*",
 		"typo3/cms-core": "^12.4.31 || ^13.4.12"
 	},
 	"autoload": {
