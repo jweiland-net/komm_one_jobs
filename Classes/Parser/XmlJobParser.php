@@ -18,11 +18,11 @@ class XmlJobParser
         $jobs = $this->xmlContent2Array($xmlContent);
 
         return array_filter($jobs, static function ($job) use ($filter): bool {
-            foreach ($filter->getFilters() as $key => $value) {
-                if ($value === 'all') {
+            foreach ($filter->getFilters() as $key => $filters) {
+                if (in_array('all', $filters, true)) {
                     return true;
                 }
-                if ($job[$key] !== $value) {
+                if (!in_array(strtolower($job[$key]), $filters, true)) {
                     return false;
                 }
             }

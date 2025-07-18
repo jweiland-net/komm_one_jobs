@@ -15,6 +15,7 @@ use JWeiland\KommOneJobs\Exception\InvalidApiConfigurationException;
 use JWeiland\KommOneJobs\Service\JobService;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\HtmlResponse;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
@@ -49,8 +50,8 @@ class JobController extends ActionController
         }
 
         $filter = new JobFilter(
-            (string)($this->settings['channel'] ?? 'all'),
-            (string)($this->settings['type'] ?? 'all')
+            GeneralUtility::trimExplode(',', (string)($this->settings['channel'] ?? 'all')),
+            GeneralUtility::trimExplode(',', (string)($this->settings['type'] ?? 'all')),
         );
 
         $jobs = $this->jobService->getStoredJobs($contentElementUid, $filter);
@@ -59,7 +60,7 @@ class JobController extends ActionController
             'jobs' => $jobs,
             'timeModelFilter' => $this->getTimeModelFilter($jobs),
             'occupationalGroupFilter' => $this->getOccupationalGroupFilter($jobs),
-            'data' => $this->configurationManager->getContentObject()->data ?? [],
+            'data' => $this->request->getAttribute('currentContentObject')->data ?? [],
         ]);
 
         return $this->htmlResponse($this->view->render());
@@ -107,7 +108,7 @@ class JobController extends ActionController
             'timeModelFilter' => $this->getTimeModelFilter($jobs),
             'selectedOccupationalGroup' => $filter->getOccupationalGroup(),
             'occupationalGroupFilter' => $this->getOccupationalGroupFilter($jobs),
-            'data' => $this->configurationManager->getContentObject()->data ?? [],
+            'data' => $this->request->getAttribute('currentContentObject')->data ?? [],
         ]);
 
         return $this->htmlResponse($this->view->render());
@@ -141,7 +142,7 @@ class JobController extends ActionController
 
     protected function getContentElementUid(): int
     {
-        return (int)$this->configurationManager->getContentObject()->data['uid'] ?? 0;
+        return (int)$this->request->getAttribute('currentContentObject')->data['uid'] ?? 0;
     }
 
     protected function getApiConfiguration(): ApiConfiguration

@@ -27,9 +27,13 @@ class JobFilter
         'multiposting' => 'Multiposting',
     ];
 
-    private string $type = 'all';
+    private array $types = [
+        'all',
+    ];
 
-    private string $channel = 'all';
+    private array $channels = [
+        'all',
+    ];
 
     private string $search;
 
@@ -38,18 +42,20 @@ class JobFilter
     private string $occupationalGroup;
 
     public function __construct(
-        string $channel,
-        string $type,
+        array $channels,
+        array $types,
         string $search = '',
         string $timeModel = '',
         string $occupationalGroup = ''
     ) {
-        if (in_array($type, array_keys(self::TYPES), true)) {
-            $this->type = $type;
+        $allowedTypes = array_keys(self::TYPES);
+        if (array_diff($types, $allowedTypes) === []) {
+            $this->types = $types;
         }
 
-        if (in_array($channel, array_keys(self::CHANNELS), true)) {
-            $this->channel = $channel;
+        $allowedChannels = array_keys(self::CHANNELS);
+        if (array_diff($channels, $allowedChannels) === []) {
+            $this->channels = $channels;
         }
 
         $this->search = htmlspecialchars(trim($search));
@@ -60,8 +66,8 @@ class JobFilter
     public function getFilters(): array
     {
         return [
-            'vacancy_type' => $this->type,
-            'publication_channel' => $this->channel,
+            'vacancy_type' => $this->types,
+            'publication_channel' => $this->channels,
         ];
     }
 

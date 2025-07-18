@@ -9,7 +9,7 @@
                         <label>Select Type</label>
                         <config>
                             <type>select</type>
-                            <renderType>selectSingle</renderType>
+                            <renderType>selectMultipleSideBySide</renderType>
                             <itemsProcFunc>JWeiland\KommOneJobs\UserFunc\AddFlexFormDataUserFunc->setTypeItems</itemsProcFunc>
                         </config>
                     </settings.type>
@@ -17,7 +17,7 @@
                         <label>Select Channel</label>
                         <config>
                             <type>select</type>
-                            <renderType>selectSingle</renderType>
+                            <renderType>selectMultipleSideBySide</renderType>
                             <itemsProcFunc>JWeiland\KommOneJobs\UserFunc\AddFlexFormDataUserFunc->setChannelItems</itemsProcFunc>
                         </config>
                     </settings.channel>
