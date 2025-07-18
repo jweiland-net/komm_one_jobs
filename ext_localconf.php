@@ -18,7 +18,8 @@ call_user_func(function () {
         ],
         [
             JobController::class => 'search',
-        ]
+        ],
+        ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT,
     );
 
     if (!isset($GLOBALS['TYPO3_CONF_VARS']['LOG']['JWeiland']['KommOneJobs']['writerConfiguration'])) {

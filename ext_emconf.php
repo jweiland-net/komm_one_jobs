@@ -2,7 +2,7 @@
 
 $EM_CONF[$_EXTKEY] = [
     'title' => 'komm.ONE jobs',
-    'description' => 'Use komm.ONE jobs API to show jobs',
+    'description' => 'Use the komm.ONE jobs API to display jobs',
     'category' => 'plugin',
     'author' => 'Stefan Froemken',
     'author_email' => 'projects@jweiland.net',
