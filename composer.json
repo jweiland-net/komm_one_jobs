@@ -23,7 +23,7 @@
 		"source": "https://github.com/jweiland-net/komm_one_jobs"
 	},
 	"require": {
-		"typo3/cms-core": "^11.5.41 || ^12.4.31"
+		"typo3/cms-core": "^12.4.31 || ^13.4.12"
 	},
 	"autoload": {
 		"psr-4": {
