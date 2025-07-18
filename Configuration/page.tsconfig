@@ -1,0 +1,17 @@
+mod {
+  wizards.newContentElement.wizardItems.plugins {
+    elements {
+      job {
+        iconIdentifier = komm-one-jobs-plugin
+        title = LLL:EXT:komm_one_jobs/Resources/Private/Language/locallang_db.xlf:plugin.title
+        description = LLL:EXT:komm_one_jobs/Resources/Private/Language/locallang_db.xlf:plugin.description
+        tt_content_defValues {
+          CType = kommonejobs_job
+        }
+      }
+    }
+  }
+}
+
+# Add CType Preview
+mod.web_layout.tt_content.preview.kommonejobs_job = EXT:komm_one_jobs/Resources/Private/Templates/PluginPreview/TableView.html

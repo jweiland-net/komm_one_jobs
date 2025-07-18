@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-10-15T10:21:40Z" product-name="komm_one_jobs">
+		<header/>
+		<body>
+			<trans-unit id="plugin.title">
+				<source>Komm.ONE Jobs</source>
+				<target>Komm.ONE Jobs</target>
+			</trans-unit>
+			<trans-unit id="plugin.description">
+				<source>Use the komm.ONE jobs API to display jobs</source>
+				<target>Verwenden Sie die komm.ONE jobs API, um Jobs anzeigen zu lassen</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

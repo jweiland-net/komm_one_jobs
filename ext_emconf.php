@@ -2,16 +2,15 @@
 
 $EM_CONF[$_EXTKEY] = [
     'title' => 'komm.ONE jobs',
-    'description' => 'Use komm.ONE jobs API to show jobs',
+    'description' => 'Use the komm.ONE jobs API to display jobs',
     'category' => 'plugin',
     'author' => 'Stefan Froemken',
-    'author_email' => 'sfroemken@jweiland.net',
+    'author_email' => 'projects@jweiland.net',
     'state' => 'stable',
-    'clearCacheOnLoad' => 0,
-    'version' => '2.0.0',
+    'version' => '3.0.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '11.5.41-12.4.99',
+            'typo3' => '12.4.31-13.4.99',
         ],
         'conflicts' => [],
         'suggests' => [],

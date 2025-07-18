@@ -1,33 +1,34 @@
 <?php
 
+use JWeiland\KommOneJobs\Controller\JobController;
+use Psr\Log\LogLevel;
+use TYPO3\CMS\Core\Log\Writer\FileWriter;
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
+
 if (!defined('TYPO3')) {
     die('Access denied.');
 }
 
 call_user_func(function () {
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    ExtensionUtility::configurePlugin(
         'KommOneJobs',
         'Job',
         [
-            \JWeiland\KommOneJobs\Controller\JobController::class => 'list, search',
+            JobController::class => 'list, search',
         ],
         [
-            \JWeiland\KommOneJobs\Controller\JobController::class => 'search',
-        ]
+            JobController::class => 'search',
+        ],
+        ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT,
     );
 
     if (!isset($GLOBALS['TYPO3_CONF_VARS']['LOG']['JWeiland']['KommOneJobs']['writerConfiguration'])) {
         $GLOBALS['TYPO3_CONF_VARS']['LOG']['JWeiland']['KommOneJobs']['writerConfiguration'] = [
-            \Psr\Log\LogLevel::INFO => [
-                \TYPO3\CMS\Core\Log\Writer\FileWriter::class => [
+            LogLevel::INFO => [
+                FileWriter::class => [
                     'logFileInfix' => 'komm_one_jobs',
                 ],
             ],
         ];
     }
-
-    // Add komm.ONE plugin to new element wizard
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-        '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:komm_one_jobs/Configuration/TSconfig/ContentElementWizard.tsconfig">'
-    );
 });
