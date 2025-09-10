@@ -20,6 +20,12 @@ You can install this extension via Composer with the following command:
 composer req jweiland/komm-one-jobs
 ```
 
+## Support
+
+Free Support is available via [GitHub Issue Tracker](https://github.com/jweiland-net/komm_one_jobs/issues).
+
+For commercial support, please contact us at [support@jweiland.net](support@jweiland.net).
+
 <!-- MARKDOWN LINKS & IMAGES -->
 
 [extension-build-shield]: https://poser.pugx.org/jweiland/komm-one-jobs/v/stable.svg?style=for-the-badge
